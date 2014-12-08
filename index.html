@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" ng-app="AngularPi" id="ng-app">
+	<head >
+		<!-- Configure for IE -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Library Imports -->
+		<link rel="stylesheet" type="text/css" href="library/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="library/css/bootstrap-theme.min.css" />
+
+		<!-- Resource Imports -->
+		<link rel="stylesheet" type="text/css" href="resources/css/index.css" />
+	</head>
+
+	<body>
+		<div ng-controller="OutputsController">
+			<div class="container">
+				<div class="page-header">
+				  <h1>Light Remote</h1>
+				</div>
+				<div class="row" ng-repeat="light in lights">
+					<div class="btn-light">
+						<button 
+								type="button"
+								class="btn col-xs-offset-1 col-xs-10 col-md-2"
+								ng-class="getClass(light.state)"
+								ng-click="switch(light)">
+							{{light.name}}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Library Imports -->
+		<script type="text/javascript" src="library/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="library/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="library/js/angular.js"></script>
+		<script type="text/javascript" src="library/js/angular-resource.js"></script>
+		
+		<!-- Angular App Import -->
+		<script type="text/javascript" src="resources/js/app.js"></script>
+
+		<!-- Angular Service Import -->
+		<script type="text/javascript" src="resources/js/services/lights.js"></script>
+
+		<!-- Angular Controller Import -->
+		<script type="text/javascript" src="resources/js/controllers/lights.js"></script>
+
+	</body>
+</html>
