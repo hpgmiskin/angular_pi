@@ -1,4 +1,4 @@
-app.service("OutputsService",['$resource',function($resource){
+app.service("LightsService",['$resource',function($resource){
 
 
 }]);
