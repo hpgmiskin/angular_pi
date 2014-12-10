@@ -1,5 +1,5 @@
-app.controller("OutputsController", ["$scope","LightsProvider",function($scope,LightsProvider){
-	//$scope.test = OutputsService.get();
+app.controller("LightsController", ["$scope","LightsProvider",function($scope,LightsProvider){
+	//$scope.test = LightsService.get();
 
   $scope.getClass = function(logic){
 
