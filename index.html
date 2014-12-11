@@ -51,6 +51,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="container" ng-controller="GoProController">
+			<div class="page-header">
+			  <h1>GoPro Feed
+			  	<button class="btn btn-primary pull-right" ng-click="updateFeed()">Update</button>
+			  </h1>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<img class="go-pro-image" ng-src="/gopro" prelodable />
+				</div>
+			</div>
+		</div>
 
 		<!-- Library Imports -->
 		<script type="text/javascript" src="library/js/jquery-1.11.1.min.js"></script>
@@ -65,10 +77,12 @@
 		<!-- Angular Service Import -->
 		<script type="text/javascript" src="resources/js/services/lights.js"></script>
 		<script type="text/javascript" src="resources/js/services/devices.js"></script>
+		<script type="text/javascript" src="resources/js/services/gopro.js"></script>
 
 		<!-- Angular Controller Import -->
 		<script type="text/javascript" src="resources/js/controllers/lights.js"></script>
 		<script type="text/javascript" src="resources/js/controllers/devices.js"></script>
+		<script type="text/javascript" src="resources/js/controllers/gopro.js"></script>
 
 	</body>
 </html>
