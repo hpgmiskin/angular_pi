@@ -1,3 +1,12 @@
 .btn-light {
   padding: 20px
 }
+
+.go-pro-image {
+  max-width: 100%;
+  height: auto;
+}
+
+img[preloadable].empty{
+    width:0; height:0;
+}
