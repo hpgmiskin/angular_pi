@@ -1,1 +1,1 @@
-var app = angular.module("AngularPi",['ngResource']);
+var app = angular.module("angularPi",['ngResource']);

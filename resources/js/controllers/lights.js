@@ -25,9 +25,9 @@ app.controller("LightsController", ["$scope","$interval","LightsProvider",functi
     }
 
     $scope.switch = function(light) {
-	$scope.light = light;
-	$scope.light.state = !$scope.light.state;
-	LightsProvider.update({lightID: $scope.light.id}, $scope.light);
+    	$scope.light = light;
+    	$scope.light.state = !$scope.light.state;
+    	LightsProvider.update({lightID: $scope.light.id}, $scope.light);
     }
 
     var seconds = 1;
