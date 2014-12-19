@@ -2,35 +2,35 @@ app.controller("LightsController", ["$scope","$interval","LightsProvider",functi
 
     $scope.lights = LightsProvider.query();
 
-    $scope.getClass = function(logic){
-
-	if (logic){
-	    return 'btn-primary';
-	} else {
-	    return 'btn-default';
-	}
-    }
-
-    var updateLights = function(){
-	
-	for (i = 0; i < $scope.lights; i++){
-	    alert(JSON.stringify($scope.lights[i]));
-	    alert(JSON.stringify(lightsProvider.get()));
-/*	    if ($scope.lights[i].id == lightQuery[i].id){
-		if ($scope.lights[i].state != lightQuery[i].state){
-		    $scope.lights[i].state = lightQuery[i].state;
-		}
-	    }
-*/	} 
-    }
-
     $scope.switch = function(light) {
-    	$scope.light = light;
-    	$scope.light.state = !$scope.light.state;
-    	LightsProvider.update({lightID: $scope.light.id}, $scope.light);
-    }
+      $scope.light = light;
+      $scope.light.state = !$scope.light.state;
+      LightsProvider.update({lightID: $scope.light.id}, $scope.light);
+    };
 
-    var seconds = 1;
-    $interval(updateLights,seconds*1000);
+    $scope.getClass = function(state){
+    	if (state){
+    	    return 'btn-primary';
+    	} else {
+    	    return 'btn-default';
+    	}
+    };
+
+    $scope.updateLights = function(){
+      console.log("Checking lights for changes");
+
+      LightsProvider.query()
+        .$promise.then(function(lights){
+          for (i = 0; i < $scope.lights.length; i++){
+            if ($scope.lights[i].state != lights[i].state){
+              console.log(lights[i].name,lights[i].state);
+              $scope.lights[i].state = lights[i].state;
+            };
+          };
+        });
+    };
+
+    var seconds = 10
+    $interval($scope.updateLights,1000*seconds);
 
 }]);
