@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" ng-app="angularPi" id="ng-app">
+
 	<head >
 		<!-- Configure for IE -->
 		<meta charset="utf-8">
@@ -41,30 +42,53 @@
 			  		role="group"
 			  		ng-show="deviceSelector.getDeviceSelected()">
 			  		<button
-			  			class="btn btn-default"
+			  			class="btn btn-primary"
 			  			ng-repeat="owner in owners"
+			  			ng-show="owner.id != 'other'"
 			  			ng-click="deviceSelector.setOwner(owner.id)">
 			  				{{owner.name}}
+			  		</button>
+			  		<button class="btn btn-danger" ng-click="deviceSelector.setOwner('other')">
+							<span class="glyphicon glyphicon-remove"></span>
 			  		</button>
 			  	</div>
 			  </h1>
 			</div>
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-4"
-						 ng-repeat="device in devices"
-						 style="padding: 10px">
-					<button 
-							type="button"
-							ng-class="getClass(device.owner)"
-							ng-click="deviceSelector.selectDevice(device)"
-							class="btn
-								col-xs-offset-1 col-md-offset-1
-								col-xs-10 col-md-10">
-						{{device.name}} - {{device.owner}}
-					</button>
+				<div 
+					ng-repeat="owner in owners" 
+					ng-class="owner.panelClass">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">{{owner.name}}</h3>
+					  </div>
+					  <div class="panel-body">
+					  	<div class="row">
+					  		<div
+					  			ng-class="owner.buttonClass"
+					  			ng-repeat="device in devices"
+									ng-show="device.owner == owner.id"
+									style="padding: 10px">
+									<button 
+										type="button"
+										ng-class="deviceSelector.getClass(device)"
+										ng-click="deviceSelector.selectDevice(device)"
+										class="btn
+											col-xs-offset-1 col-md-offset-1
+											col-xs-10 col-md-10">
+										{{device.name}}
+										<span
+											ng-show="device.connection == 'wireless'" 
+											class="glyphicon glyphicon-signal pull-right"></span>
+									</button>
+								</div>
+							</div>
+					  </div>
+					</div>
 				</div>
 			</div>
 		</div>
+
 <!--
 		<div class="container" ng-controller="GoProController">
 			<div class="page-header">
@@ -79,6 +103,7 @@
 			</div>
 		</div>
 -->
+
 		<!-- Library Imports -->
 		<script type="text/javascript" src="library/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="library/js/bootstrap.min.js"></script>
@@ -90,9 +115,9 @@
 		<script type="text/javascript" src="resources/js/app.js"></script>
 
 		<!-- Angular Service Import -->
-		<script type="text/javascript" src="resources/js/services/lights.js"></script>
-		<script type="text/javascript" src="resources/js/services/devices.js"></script>
-		<!--<script type="text/javascript" src="resources/js/services/gopro.js"></script>-->
+		<script type="text/javascript" src="resources/js/providers/lights.js"></script>
+		<script type="text/javascript" src="resources/js/providers/devices.js"></script>
+		<!--<script type="text/javascript" src="resources/js/providers/gopro.js"></script>-->
 
 		<!-- Angular Controller Import -->
 		<script type="text/javascript" src="resources/js/controllers/lights.js"></script>

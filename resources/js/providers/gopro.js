@@ -1,8 +1,3 @@
-app.service("GoProService",['$resource',function($resource){
-
-
-}]);
-
 app.provider('GoProProvider', function(){
   this.$get = ['$resource', function($resource) {
     var GoProProvider = $resource('/gopro/:photoID',{},{

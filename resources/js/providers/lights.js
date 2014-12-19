@@ -1,8 +1,3 @@
-app.service("LightsService",['$resource',function($resource){
-
-
-}]);
-
 app.provider('LightsProvider', function(){
   this.$get = ['$resource', function($resource) {
     var LightsProvider = $resource('/lights/:lightID',{},{

@@ -1,9 +1,10 @@
 app.controller("DevicesController", ["$scope","DevicesProvider",function($scope,DevicesProvider){
 
   $scope.owners = [
-    {id: "henry", name: "Henry"},
-    {id: "ilan", name: "Ilan"},
-    {id: "steve", name: "Steve"}
+    {id: "henry", name: "Henry", panelClass: "col-xs-12 col-sm-6 col-md-4", buttonClass:"col-xs-12 col-sm-12 col-md-12"},
+    {id: "ilan", name: "Ilan", panelClass: "col-xs-12 col-sm-6 col-md-4", buttonClass:"col-xs-12 col-sm-12 col-md-12"},
+    {id: "steve", name: "Steve", panelClass: "col-xs-12 col-sm-6 col-md-4", buttonClass:"col-xs-12 col-sm-12 col-md-12"},
+    {id: "other", name: "Other", panelClass: "col-xs-12 col-sm-12 col-md-12", buttonClass:"col-xs-12 col-sm-6 col-md-4"}
   ];
 
   $scope.devices = DevicesProvider.query();
@@ -14,6 +15,10 @@ app.controller("DevicesController", ["$scope","DevicesProvider",function($scope,
     this.deviceSelected = false;
 
     this.selectDevice = function(device){
+      if (this.selectedDevice == device){
+        device = null;
+      }
+
       this.selectedDevice = device;
 
       if (device != null){
@@ -37,22 +42,16 @@ app.controller("DevicesController", ["$scope","DevicesProvider",function($scope,
       return this.deviceSelected;
     }
 
+    this.getClass = function(device){
+      if (device == this.selectedDevice){
+        return "btn-primary";
+      } else {
+        return "btn-default";
+      }
+    }
+
   };
 
   $scope.deviceSelector = new deviceSelector();
-
-  $scope.getClass = function(owner){
-    if (owner == "henry"){
-      return "btn-primary"
-    } else if (owner == "ilan"){
-      return "btn-secondary"
-    } else if (owner == "steve"){
-      return "btn-danger"
-    } else if (owner == "unkown"){
-      return "btn-danger"
-    } else {
-      return "btn-default"
-    }
-  };
 
 }]);
