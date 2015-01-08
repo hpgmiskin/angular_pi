@@ -1,15 +1,40 @@
-app.controller("DevicesController", ["$scope","DevicesProvider",function($scope,DevicesProvider){
+app.controller("DevicesController", ["$scope","DevicesProvider","DevicesService",function($scope,DevicesProvider,DevicesService){
 
-  $scope.owners = [
-    {id: "henry", name: "Henry", panelClass: "col-xs-12 col-sm-6 col-md-4", buttonClass:"col-xs-12 col-sm-12 col-md-12"},
-    {id: "ilan", name: "Ilan", panelClass: "col-xs-12 col-sm-6 col-md-4", buttonClass:"col-xs-12 col-sm-12 col-md-12"},
-    {id: "steve", name: "Steve", panelClass: "col-xs-12 col-sm-6 col-md-4", buttonClass:"col-xs-12 col-sm-12 col-md-12"},
-    {id: "other", name: "Other", panelClass: "col-xs-12 col-sm-12 col-md-12", buttonClass:"col-xs-12 col-sm-6 col-md-4"}
-  ];
+  function ShowDevices(){
 
-  $scope.devices = DevicesProvider.query();
+    this.show = false;
 
-  function deviceSelector(){
+    this.showButton = function(){
+      return !this.show;
+    }
+
+    this.showUpdateButton = function(){
+      if (this.show){
+        return !$scope.deviceSelector.getDeviceSelected();
+      } else {
+        return false;
+      }
+    }
+
+    this.showDevices = function(){
+      return this.show;
+    }
+
+    this.updateDevices = function(){
+      $scope.devices = DevicesProvider.query();
+    }
+
+    this.toggleDevices = function(){
+      this.show = !this.show;
+      if (this.show){
+        $scope.owners = DevicesService.getOwners();
+        $scope.devices = DevicesProvider.query();
+      }
+    }
+  }
+
+
+  function DeviceSelector(){
 
     this.selectedDevice = null;
     this.deviceSelected = false;
@@ -52,6 +77,7 @@ app.controller("DevicesController", ["$scope","DevicesProvider",function($scope,
 
   };
 
-  $scope.deviceSelector = new deviceSelector();
+  $scope.showDevices = new ShowDevices();
+  $scope.deviceSelector = new DeviceSelector();
 
 }]);
