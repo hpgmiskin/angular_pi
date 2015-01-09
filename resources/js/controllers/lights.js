@@ -30,7 +30,7 @@ app.controller("LightsController", ["$scope","$interval","LightsProvider",functi
         });
     };
 
-    var seconds = 10
+    var seconds = 1
     $interval($scope.updateLights,1000*seconds);
 
 }]);

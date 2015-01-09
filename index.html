@@ -21,7 +21,7 @@
 			  <h1>Light Remote</h1>
 			</div>
 			<div class="row" ng-repeat="light in lights">
-				<div class="btn-light col-xs-12 col-sm-6 col-md-4">
+				<div class="lights col-xs-12 col-sm-6 col-md-4">
 					<button 
 							type="button"
 							class="btn
@@ -106,7 +106,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-4" ng-show="showDevices.showButton()">
+				<div class="devices col-xs-12 col-sm-6 col-md-4" ng-show="showDevices.showButton()">
 					<button 
 						type="button"
 						ng-click="showDevices.toggleDevices()"
@@ -131,6 +131,10 @@
 			</div>
 		</div>
 -->
+
+	<footer>
+		<hr>
+	</footer>
 
 		<!-- Library Imports -->
 		<script type="text/javascript" src="library/js/jquery-1.11.1.min.js"></script>
